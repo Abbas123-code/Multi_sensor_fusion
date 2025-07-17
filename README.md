@@ -33,15 +33,6 @@
 
 ---
 
-## 🖼️ Sample Outputs
-
-*(Add your output images in a `/results` folder and update below)*
-
-| Detected ArUco | Warped Poster | Augmented Image |
-|---------------|--------------|----------------|
-| ![Aruco](results/detected_aruco.jpg) | ![Warped](results/warped_poster.jpg) | ![Augmented](results/augmented_image.jpg) |
-
----
 
 ## 🚀 How to Run
 
