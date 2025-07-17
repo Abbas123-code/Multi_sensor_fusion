@@ -2,7 +2,7 @@
 
 ---
 
-## 🧠 Algorithm Steps
+## Algorithm Steps
 1. **Loading Images** – Read ArUco marker & poster image using `cv2.imread()`.
 2. **Detecting ArUco Markers** – Use `cv2.aruco` dictionary & `detectMarkers()` to get corner points.
 3. **Detecting Poster Corners** – Compute center points & scaled poster corners.
@@ -13,12 +13,12 @@
 
 ---
 
-## 📊 Results
+##  Results
 
-### ✅ Perfectly Aligned Images
+###  Perfectly Aligned Images
 - Poster edges align accurately with wall edges.
 
-### ⚠️ Misaligned Images
+###  Misaligned Images
 - Caused by:
   - Poor marker detection  
   - Perspective distortion  
@@ -26,7 +26,7 @@
 
 ---
 
-## 🛠️ Technologies & Libraries
+##  Technologies & Libraries
 - **Python 3.x**
 - **OpenCV (cv2)**
 - **NumPy**
@@ -34,7 +34,7 @@
 ---
 
 
-## 🚀 How to Run
+##  How to Run
 
 ```bash
 # Clone this repository
