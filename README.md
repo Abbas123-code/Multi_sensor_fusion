@@ -119,9 +119,11 @@ The results help improve **object detection algorithms** and enhance **multi-sen
 
 | Segmentation | LiDAR Projection | 3D Bounding Boxes |
 |--------------|------------------|-------------------|
-| ![Seg]<img width="567" height="182" alt="image" src="https://github.com/user-attachments/assets/41cb2e4e-abe8-4cbc-88da-85095b0a6397" />
-| ![LiDAR]<img width="562" height="188" alt="image" src="https://github.com/user-attachments/assets/55fee6ef-36a2-463a-801b-ec116b4edba7" />
- | ![3D Boxes]<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/1a59ce21-379d-46e9-8faf-4269dd23181f" />
+| [Semantic segmentation
+]<img width="567" height="182" alt="image" src="https://github.com/user-attachments/assets/41cb2e4e-abe8-4cbc-88da-85095b0a6397" />
+| [Given ground truth table with lidar points
+]<img width="562" height="188" alt="image" src="https://github.com/user-attachments/assets/55fee6ef-36a2-463a-801b-ec116b4edba7" />
+ | [Creating bounding box ]<img width="567" height="282" alt="image" src="https://github.com/user-attachments/assets/1a59ce21-379d-46e9-8faf-4269dd23181f" />
  |
 
 ---
