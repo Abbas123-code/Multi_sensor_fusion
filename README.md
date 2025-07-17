@@ -51,16 +51,22 @@ The results help improve **object detection algorithms** and enhance **multi-sen
 ### **2) Projection of 3D LiDAR Point Clouds onto Segmented 2D Images**
 - **Steps:**
   1. **Homogeneous Conversion:**  
-     \( P^{LiDAR}_h = [X_L, Y_L, Z_L, 1]^T \)
+     P^LiDAR_h = [X_L, Y_L, Z_L, 1]^T
+
   2. **Extrinsic Transformation (LiDAR → Camera):**  
-     \( P_{cam} = P^{LiDAR}_h \cdot T^{lidar}_{cam} \)
+     P_cam = P^LiDAR_h · T_lidar→cam
+
   3. **Rectification:**  
-     \( P_{rect3D} = P_{cam} \cdot R_{rect00} \)
+     P_rect3D = P_cam · R_rect00
+
   4. **Projection to 2D Image Plane:**  
-     \( p_{img}^h = P_{rect3D}^h \cdot P_{rect00} = [u', v', s] \)
+     p_img_h = P_rect3D_h · P_rect00 = [u', v', s]
+
   5. **Normalization to Pixel Coordinates:**  
-     \( u = \frac{u'}{s}, \quad v = \frac{v'}{s} \)
-  6. Overlaid LiDAR points on the segmented 2D image.
+     u = u' / s, v = v' / s
+
+  6. **Overlay:**  
+     LiDAR points are overlaid on the segmented 2D image.
 
 ### **3) Visualization of Filtered LiDAR Points in 3D using Open3D**
 - Each LiDAR point was colored based on its corresponding 2D pixel color.  
