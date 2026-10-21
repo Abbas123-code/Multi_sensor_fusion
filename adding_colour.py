@@ -137,13 +137,10 @@ def batch_process(bin_folder, image_folder, output_folder):
         color_lidar_points(bin_path, image_path, output_ply_path)
 
 if __name__ == "__main__":
-    bin_folder = r"D:\\Lira2\\KITTI-360_sample\\data_3d_raw\\2013_05_28_drive_0000_sync\\velodyne_points\\data"
-    image_folder = r"D:\\Lira2\\opim\\22ndtryimgnpy"  # folder with your colored projected images
-    output_folder = r"D:\\Lira2\\colored_pointclouds_output"
-
-    batch_process(bin_folder, image_folder, output_folder)
-
-
-
-
-
+    import argparse
+    ap = argparse.ArgumentParser(description="Colour KITTI-360 LiDAR points from instance-mask images")
+    ap.add_argument("bin_folder", help="velodyne_points/data folder (.bin)")
+    ap.add_argument("mask_folder", help="folder with colour-mask images from semantic_segmentation.py")
+    ap.add_argument("output_folder", help="output folder for coloured .ply files")
+    a = ap.parse_args()
+    batch_process(a.bin_folder, a.mask_folder, a.output_folder)

@@ -144,7 +144,7 @@ def process_and_save(ply_path, json_path, output_path, current_image_data):
             print(f" Color {color_key} ({color_name}, {rgb_string}): Box #{best_box_idx} owns it.")
             print(f"   → Points inside: {len(inside_indices)}")
             print(f"   → Points outside: {len(outside_indices)}")
-            print(f"   → Nearest point distance to box center: {min_distance:.2f} meters\n")
+            print(f"   → Nearest inside-point distance from LiDAR origin: {min_distance:.2f} meters\n")
 
             current_image_data.append([
                 f"{tuple(round(c*255) for c in color_key)}",
@@ -183,13 +183,18 @@ def process_and_save(ply_path, json_path, output_path, current_image_data):
         print(f" Error processing {ply_path}: {e}")
 
 if __name__ == "__main__":
-    ply_path = r"D:\\Lira2\\colored_pointclouds_output"
-    json_path = r"D:\\Lira2\\KITTI-360_sample\\bboxes_3D_cam0"
-    output_folder = r"D:\\Lira2\\final_op2"
-    csv_output_path = r"D:\\Lira2\\csvfile\\baredata.csv"
+    import argparse
+    ap = argparse.ArgumentParser(description="Compare coloured LiDAR instances with ground-truth 3D boxes")
+    ap.add_argument("ply_path", help="folder with coloured .ply files from adding_colour.py")
+    ap.add_argument("json_path", help="folder with BBoxes_<frame>.json ground-truth boxes (corners_cam0)")
+    ap.add_argument("output_folder", help="output folder for .ply files with boxes")
+    ap.add_argument("csv_output_path", help="output CSV file")
+    args = ap.parse_args()
+    ply_path, json_path = args.ply_path, args.json_path
+    output_folder, csv_output_path = args.output_folder, args.csv_output_path
 
     os.makedirs(output_folder, exist_ok=True)
-    os.makedirs(os.path.dirname(csv_output_path), exist_ok=True)
+    os.makedirs(os.path.dirname(os.path.abspath(csv_output_path)), exist_ok=True)
 
     ply_files = sorted([f for f in os.listdir(ply_path) if f.endswith(".ply")])
 
@@ -227,7 +232,7 @@ if __name__ == "__main__":
         writer = csv.writer(file)
         for image_label, image_data in all_image_data:
             writer.writerow([image_label])
-            writer.writerow(["Color (RGB)", "Points Inside", "Points Outside", "Min Distance (m)"])
+            writer.writerow(["Color (RGB)", "Points Inside", "Points Outside", "Min Distance from LiDAR origin (m)"])
             for row in image_data:
                 writer.writerow(row)
             writer.writerow([])

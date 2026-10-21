@@ -2,6 +2,7 @@ import os
 import cv2
 import numpy as np
 from ultralytics import YOLO
+import argparse
 import random
 
 def get_random_unique_color(used_colors):
@@ -13,13 +14,10 @@ def get_random_unique_color(used_colors):
             return color
     raise RuntimeError("Failed to generate a unique color after many attempts.")
 
-def process_images():
-    image_folder = r"D:\\lira_data\\KITTI-360_sample\\data_2d_raw\\2013_05_28_drive_0000_sync\\image_00\data_rect"
-    output_folder = r"D:\\Lira2\\opim\\2ndtryimgnpy"
-    output_folder2 = r"D:\\Lira2\\opim\\22ndtryimgnpy"
+def process_images(image_folder, output_folder, output_folder2, weights='yolov8l-seg.pt'):
     os.makedirs(output_folder, exist_ok=True)
     os.makedirs(output_folder2, exist_ok=True)
-    model = YOLO('yolov8l-seg.pt')  # Segmentation model
+    model = YOLO(weights)  # Segmentation model
 
     image_files = [f for f in os.listdir(image_folder) if f.lower().endswith('.png')]
 
@@ -65,4 +63,10 @@ def process_images():
         print(f"Processed {image_file} with {car_count - 1} cars.")
 
 if __name__ == "__main__":
-    process_images()
+    ap = argparse.ArgumentParser(description="YOLOv8 car instance segmentation on KITTI-360 images")
+    ap.add_argument("image_folder", help="folder with rectified .png images (e.g. image_00/data_rect)")
+    ap.add_argument("overlay_folder", help="output folder for mask overlays and per-image car info (.npy)")
+    ap.add_argument("mask_folder", help="output folder for pure colour-mask images")
+    ap.add_argument("--weights", default="yolov8l-seg.pt")
+    a = ap.parse_args()
+    process_images(a.image_folder, a.overlay_folder, a.mask_folder, a.weights)
